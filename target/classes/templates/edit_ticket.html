@@ -1,22 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Редактировать билет</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div class="container">
-    <h1>✏️ Редактировать билет</h1>
+<h1>Редактировать билет</h1>
 
-    <form th:action="@{'/tickets/edit/' + ${ticket.id}}" th:object="${ticket}" method="post" class="add-form">
-        <input type="text" th:field="*{eventName}" placeholder="Название события" required>
-        <input type="text" th:field="*{buyerName}" placeholder="Имя покупателя" required>
-        <input type="text" th:field="*{seatNumber}" placeholder="Номер места" required>
-        <button type="submit">Сохранить изменения</button>
-    </form>
+<form th:action="@{'/tickets/edit/' + ${ticket.id}}" th:object="${ticket}" method="post">
+    <div>
+        <label>Событие</label>
+        <input type="text" th:field="*{eventName}" required>
+    </div>
+    <div>
+        <label>Покупатель</label>
+        <input type="text" th:field="*{buyerName}" required>
+    </div>
+    <div>
+        <label>Место</label>
+        <input type="text" th:field="*{seatNumber}" required>
+    </div>
 
-    <a th:href="@{/tickets}" class="button">↩️ Назад к билетам</a>
-</div>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <button type="submit">Сохранить</button>
+</form>
+
+<a th:href="@{/tickets}">Назад</a>
 </body>
 </html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="ru">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Редактировать билет</title>-->
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>✏️ Редактировать билет</h1>-->
+
+<!--    <form th:action="@{'/tickets/edit/' + ${ticket.id}}" th:object="${ticket}" method="post" class="add-form">-->
+<!--        <input type="text" th:field="*{eventName}" placeholder="Название события" required>-->
+<!--        <input type="text" th:field="*{buyerName}" placeholder="Имя покупателя" required>-->
+<!--        <input type="text" th:field="*{seatNumber}" placeholder="Номер места" required>-->
+<!--        <button type="submit">Сохранить изменения</button>-->
+<!--    </form>-->
+
+<!--    <a th:href="@{/tickets}" class="button">↩️ Назад к билетам</a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
